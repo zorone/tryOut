@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use Exception;
+use Throwable;
 use Illuminate\Http\Response;
 use Illuminate\Database\QueryException;
 use Illuminate\Auth\AuthenticationException;
@@ -33,7 +33,7 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return void
      */
-    public function report(Exception $exception)
+    public function report(Throwable $exception)
     {
         parent::report($exception);
     }
@@ -45,7 +45,7 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $exception)
     {
         /*
          * We add a custom exception renderer here since this will be an api only backend.
@@ -65,7 +65,7 @@ class Handler extends ExceptionHandler
      * @param Exception $exception
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function getJsonResponse(Exception $exception)
+    protected function getJsonResponse(Throwable $exception)
     {
         $debugEnabled = config('app.debug');
 
